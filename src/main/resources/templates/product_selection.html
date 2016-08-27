@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<title>Sky Test - Select Products</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link href="../static/css/base.css" th:href="@{/css/base.css}"
+	rel="stylesheet" />
+<script th:src="@{webjars/jquery/2.2.1/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<div th:each="element : ${productsByCategory}"
+			class="form-group category">
+			<div th:text="${element.key}" class="lead">Category</div>
+			<div th:each="product : ${element.value}">
+				<div class="product">
+					<input type="checkbox" th:value="${product.category}"
+						class="checkbox"></input> <label th:text="${product.name}">
+						Sky News </label>
+				</div>
+			</div>
+		</div>
+		<form id="basket">
+			<div class="basket form-group">
+				<div class="lead">Basket</div>
+				<div class="basket-selection"></div>
+				<button type="submit"
+					class="btn-checkout center-block btn btn-default btn-lg" disabled="true">Checkout</button>
+			</div>
+		</form>
+	</div>
+	<script src="../static/js/basket.js" th:src="@{/js/basket.js}"></script>
+</body>
+</html>
